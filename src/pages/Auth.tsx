@@ -10,6 +10,22 @@ import { toast } from 'sonner';
 import { Lock, Mail, User, LogIn, UserPlus, Loader2, Eye, EyeOff } from 'lucide-react';
 import { z } from 'zod';
 import indigoLogo from '/Indigo.png';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+// Partner logos
+const logos = [
+  { src: '/Genexia (Negro).png', alt: 'Genexia' },
+  { src: '/Indira (2).png', alt: 'Indira' },
+  { src: '/Logo Coral-01.png', alt: 'Coral' },
+  { src: '/Logo One View negro.png', alt: 'One View' },
+  { src: '/Vie (1).png', alt: 'Vie' },
+];
 
 // Validation schemas
 const signUpSchema = z.object({
@@ -159,6 +175,35 @@ const Auth = () => {
               className="h-40 w-auto object-contain drop-shadow-2xl animate-float"
             />
           </div>
+        </div>
+
+        {/* Logo Carousel */}
+        <div className="mb-8 bg-gradient-to-r from-slate-50 via-slate-100 to-slate-50 rounded-2xl p-6 shadow-inner border border-slate-200/50">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {logos.map((logo, index) => (
+                <CarouselItem key={index} className="basis-1/3 md:basis-1/4">
+                  <div className="p-2">
+                    <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center h-20 border border-slate-200/30">
+                      <img
+                        src={logo.src}
+                        alt={logo.alt}
+                        className="max-h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                      />
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0 bg-white/90 hover:bg-white shadow-md" />
+            <CarouselNext className="right-0 bg-white/90 hover:bg-white shadow-md" />
+          </Carousel>
         </div>
 
         <Tabs defaultValue="login" className="w-full">
